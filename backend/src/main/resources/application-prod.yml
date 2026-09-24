@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: finscale-backend
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/finscale}
+      auto-index-creation: true
+
+finscale:
+  jwt:
+    secret: ${JWT_SECRET:finscale-devops-autoscaling-secret-key-for-jwt-signing-2026}
+    expiration: 86400000
+
+logging:
+  level:
+    com.finscale: INFO

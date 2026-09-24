@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: finscale-backend
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/finscale
+      auto-index-creation: true
+
+# JWT Configuration (prepared for future auth; currently all endpoints are open)
+finscale:
+  jwt:
+    secret: finscale-devops-autoscaling-secret-key-for-jwt-signing-2026
+    expiration: 86400000  # 24 hours in milliseconds
+
+logging:
+  level:
+    com.finscale: INFO
+    org.springframework.data.mongodb: INFO

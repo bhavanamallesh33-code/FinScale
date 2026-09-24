@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finscale-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finscale-backend
+  template:
+    metadata:
+      labels:
+        app: finscale-backend
+    spec:
+      containers:
+        - name: finscale-backend
+          image: finscale-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongodb:27017/finscale
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finscale-backend
+spec:
+  selector:
+    app: finscale-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
